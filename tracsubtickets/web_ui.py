@@ -118,8 +118,9 @@ class SubTicketsModule(Component):
         for parent, child in cursor:
             children[child] = None
 
-        for id in children:
-            children[id] = self.get_children(id, db)
+        if self.recursion:
+            for id in children:
+                children[id] = self.get_children(id, db)
 
         return children
 
